@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Havenuts – The Food Store</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FDF6EC;
+    --choco: #3B1F0A;
+    --choco-mid: #7B4A1E;
+    --gold: #C8922A;
+    --gold-light: #E8B84B;
+    --fb: #1877F2;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 0 60px;
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    width: 100%;
+    background: var(--choco);
+    padding: 44px 24px 34px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 60% 0%, rgba(200,146,42,0.25) 0%, transparent 70%),
+      radial-gradient(ellipse at 10% 100%, rgba(212,100,90,0.18) 0%, transparent 60%);
+  }
+
+  .hero-logo {
+    position: relative; z-index: 1;
+    margin-bottom: 14px;
+  }
+  .hero-logo img {
+    width: 230px; max-width: 70vw;
+    filter: brightness(1.1) drop-shadow(0 4px 20px rgba(200,146,42,0.5));
+    animation: float 3s ease-in-out infinite;
+  }
+  .logo-fallback {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem; font-weight: 900;
+    color: var(--gold-light);
+    letter-spacing: -0.5px;
+  }
+  .logo-fallback span { color: var(--gold); }
+
+  @keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-7px); }
+  }
+
+  .hero-tagline {
+    position: relative; z-index: 1;
+    color: rgba(255,255,255,0.65);
+    font-size: 14px; font-weight: 300;
+    letter-spacing: 0.5px;
+    margin-top: 6px;
+  }
+
+  /* CTA STRIP */
+  .cta-strip {
+    background: var(--gold);
+    color: var(--choco);
+    width: 100%;
+    padding: 13px 24px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 15px;
+  }
+  .cta-strip strong { font-weight: 700; }
+
+  /* CARD */
+  .card {
+    width: min(460px, 92vw);
+    margin-top: 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .section-label {
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--choco-mid);
+    padding-left: 4px; margin-top: 8px;
+  }
+
+  /* BUTTONS */
+  .btn {
+    display: flex; align-items: center; gap: 16px;
+    padding: 18px 22px; border-radius: 16px;
+    text-decoration: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px; font-weight: 500;
+    cursor: pointer; border: none;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+    opacity: 0; transform: translateY(20px);
+    animation: rise 0.5s ease forwards;
+  }
+  .btn:hover { transform: translateY(-3px); }
+  .btn:active { transform: translateY(0); }
+
+  .btn:nth-child(1) { animation-delay: 0.05s; }
+  .btn:nth-child(2) { animation-delay: 0.15s; }
+  .btn:nth-child(3) { animation-delay: 0.30s; }
+  .btn:nth-child(4) { animation-delay: 0.40s; }
+  .btn:nth-child(5) { animation-delay: 0.50s; }
+
+  @keyframes rise { to { opacity: 1; transform: translateY(0); } }
+
+  .btn-icon {
+    width: 42px; height: 42px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; flex-shrink: 0;
+    background: rgba(255,255,255,0.22);
+  }
+  .btn-text { flex: 1; text-align: left; }
+  .btn-text strong { display: block; }
+  .btn-text small { font-size: 12px; font-weight: 300; opacity: 0.82; margin-top: 1px; display: block; }
+  .btn-arrow { font-size: 20px; opacity: 0.6; transition: transform 0.18s, opacity 0.18s; }
+  .btn:hover .btn-arrow { transform: translateX(4px); opacity: 1; }
+
+  /* Instagram */
+  .btn-insta { background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: #fff; box-shadow: 0 6px 24px rgba(220,39,67,0.35); }
+  .btn-insta:hover { box-shadow: 0 10px 32px rgba(220,39,67,0.5); }
+
+  /* Facebook */
+  .btn-fb { background: var(--fb); color: #fff; box-shadow: 0 6px 24px rgba(24,119,242,0.35); }
+  .btn-fb:hover { box-shadow: 0 10px 32px rgba(24,119,242,0.45); }
+
+  /* Google */
+  .btn-google { background: #fff; color: #3c4043; box-shadow: 0 6px 24px rgba(0,0,0,0.12); border: 1.5px solid #e8eaed; }
+  .btn-google:hover { box-shadow: 0 10px 32px rgba(0,0,0,0.18); }
+  .btn-google .btn-icon { background: #f8f9fa; }
+
+  /* Website */
+  .btn-web { background: var(--choco); color: #fff; box-shadow: 0 6px 24px rgba(59,31,10,0.3); }
+  .btn-web:hover { box-shadow: 0 10px 32px rgba(59,31,10,0.4); }
+
+  /* DIVIDER */
+  .divider {
+    display: flex; align-items: center; gap: 12px;
+    margin: 6px 0 2px;
+    color: var(--choco-mid); opacity: 0.4; font-size: 12px;
+  }
+  .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: currentColor; }
+
+  /* FOOTER */
+  .footer {
+    margin-top: 40px;
+    color: rgba(59,31,10,0.35);
+    font-size: 12px; text-align: center;
+    letter-spacing: 0.4px; line-height: 1.9;
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-logo">
+    <img src="have_nut_logo_small.png" alt="HaveNuts — Great Dry Fruits"
+      onerror="this.style.display='none';document.getElementById('logoFallback').style.display='block'" />
+    <div class="logo-fallback" id="logoFallback" style="display:none">HAVE<span>NUTS</span></div>
+  </div>
+  <p class="hero-tagline">Great Dry Fruits · Bengaluru's Favourite Food Store</p>
+</div>
+
+<!-- CTA STRIP -->
+<div class="cta-strip">
+  Love our products? <strong>Support us in 10 seconds ❤️</strong>
+</div>
+
+<!-- BUTTONS -->
+<div class="card">
+
+  <p class="section-label">Connect with us</p>
+
+  <!-- Instagram -->
+  <a class="btn btn-insta" href="https://www.instagram.com/havenuts.india/" target="_blank" rel="noopener">
+    <div class="btn-icon">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="2" y="2" width="20" height="20" rx="5.5" stroke="white" stroke-width="2"/>
+        <circle cx="12" cy="12" r="4.5" stroke="white" stroke-width="2"/>
+        <circle cx="17.5" cy="6.5" r="1.2" fill="white"/>
+      </svg>
+    </div>
+    <div class="btn-text">
+      <strong>Follow us on Instagram</strong>
+      <small>@havenuts.india · Stay updated 📲</small>
+    </div>
+    <span class="btn-arrow">→</span>
+  </a>
+
+  <!-- Facebook -->
+  <a class="btn btn-fb" href="https://www.facebook.com/havenutsthefoodstore/" target="_blank" rel="noopener">
+    <div class="btn-icon">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+        <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+      </svg>
+    </div>
+    <div class="btn-text">
+      <strong>Follow us on Facebook</strong>
+      <small>HaveNuts The Food Store 👍</small>
+    </div>
+    <span class="btn-arrow">→</span>
+  </a>
+
+  <div class="divider">show your love</div>
+
+  <!-- Google Review -->
+  <a class="btn btn-google" href="https://www.google.com/search?sca_esv=eab6250d847a03c3&sxsrf=ANbL-n4l98nBmPpyvliN50cwVXiR07wv-Q:1776924958697&si=AL3DRZEsmMGCryMMFSHJ3StBhOdZ2-6yYkXd_doETEE1OR-qOTpUivPhmcHh0ob9T6Xya0cJsVcZaUZiP0PsCyEntGb5Aof47nNO5F8GuqCHMqnbxyYKUkrhJHppgT0upaYzyGDW8o3fAnBY1v13ZRlx43-mzoUfPg%3D%3D&q=HAVENUTS,+THE+FOOD+STORE+Reviews&sa=X&ved=2ahUKEwjjotKnqYOUAxUurZUCHVEgDRAQ0bkNegQINxAH#lrd=0x3bae1599ba4d0899:0x69091ba0a017e135,3,,,," target="_blank" rel="noopener">
+    <div class="btn-icon">
+      <svg width="22" height="22" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+        <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+        <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+        <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+      </svg>
+    </div>
+    <div class="btn-text">
+      <strong>Leave a Google Review ⭐</strong>
+      <small>Takes 10 seconds · Means the world to us</small>
+    </div>
+    <span class="btn-arrow">→</span>
+  </a>
+
+  <!-- Website -->
+  <a class="btn btn-web" href="https://havenuts.in/" target="_blank" rel="noopener">
+    <div class="btn-icon">🛒</div>
+    <div class="btn-text">
+      <strong>Visit Our Website</strong>
+      <small>havenuts.in · Shop our full collection</small>
+    </div>
+    <span class="btn-arrow">→</span>
+  </a>
+
+</div>
+
+<p class="footer">
+  📍 #3, 1A/39, 27th Cross Road, 4th Block, Jayanagar, Bengaluru<br>
+  Made with ❤️ for Havenuts – The Food Store
+</p>
+
+</body>
+</html>
